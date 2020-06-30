@@ -37,28 +37,21 @@ function showList(){
    html += '</ul>';
 
    document.getElementById('todos').innerHTML = html;
+   document.getElementById('itemToAdd').value = '';
+   
 
    for (j=0; j < toDos.length; j++){
-      console.log(document.getElementById(j));
       document.getElementById(j).addEventListener('click',removeItem);
    }
-
-   //for (let j = 0; j < toDos.length; j++) { 
-   //    let button = toDos[j]; 
-   //    button.addEventListener(‘click’, removeItem() { logButtonIndex(j);});
-   //  }
-       
-  // checkForDeletes();
+   
        
 }
       
 
 function removeItem() {
-   var foo = this.getAttribute('id');
-   console.log(foo);
+   var index = this.getAttribute('id');
    var toDos = get_toDos();
-   console.log('Item to delete is ' + toDos[foo]);
-   var newToDos = toDos.splice(foo,1);
+   var newToDos = toDos.splice(index,1);
    localStorage.setItem("toDos",JSON.stringify(toDos)) 
    showList();
 }
@@ -66,6 +59,7 @@ function removeItem() {
 
 showList();
 document.getElementById('addtodo').addEventListener('click',add);
+
 
 
 
